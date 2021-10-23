@@ -1,0 +1,13 @@
+--
+- hosts: webservers
+  remote_user: root
+  become: yes
+  tasks:
+  - name: starting up tomcat
+    service:
+      name: tomcat
+      state: started
+  - name: copying addressbook file
+    copy:
+      src: /root/jenkins/workspace/step1/addressbook_main/target/addressbook.war
+      dest: /usr/share/tomcat/webapps
