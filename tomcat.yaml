@@ -44,13 +44,13 @@
       state: restarted
     when:  ansible_facts['os_family'] == "Debian"
   - name: copying addressbook file CentOS
-    unzip:
+    unarchive:
       src: /root/jenkins/workspace/step1/addressbook_main/target/addressbook.war
       dest: /usr/share/tomcat/webapps
       setype: war
     when:  ansible_facts['os_family'] == "RedHat"
   - name: copying addressbook file Ubuntu
-    unzip:
+    unarchive:
       src: /root/jenkins/workspace/step1/addressbook_main/target/addressbook.war
       dest: /var/lib/tomcat9/webapps
       setype: war
