@@ -43,7 +43,14 @@
       name: tomcat9
       state: restarted
     when:  ansible_facts['os_family'] == "Debian"
-  - name: copying addressbook file
+  - name: copying addressbook file CentOS
     copy:
       src: /root/jenkins/workspace/step1/addressbook_main/target/addressbook.war
       dest: /usr/share/tomcat/webapps
+    when:  ansible_facts['os_family'] == "RedHat"
+  - name: copying addressbook file Ubuntu
+    copy:
+      src: /root/jenkins/workspace/step1/addressbook_main/target/addressbook.war
+      dest: /var/lib/tomcat9/webapps
+    when:  ansible_facts['os_family'] == "Debian"
+  
