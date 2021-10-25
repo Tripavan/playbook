@@ -7,10 +7,17 @@
     package:
       name: tomcat
       state: present
+    when:  ansible_facts['os_family'] == "RedHat"
+  - name: installing tomcat
+    package:
+      name: tomcat9
+      state: present
+    when:  ansible_facts['os_family'] == "Debian"
   - name: starting tomcat
     service:
       name: tomcat
       state: started
+    when:  ansible_facts['os_family'] == "RedHat"
   - name: configuration of tomcat
     copy:
       src: /root/tomcat.config
@@ -19,6 +26,12 @@
     service:
       name: tomcat
       state: restarted
+    when:  ansible_facts['os_family'] == "RedHat"
+  - name: installing tomcat
+    package:
+      name: tomcat9
+      state: restarted
+    when:  ansible_facts['os_family'] == "Debian"
   - name: copying addressbook file
     copy:
       src: /root/jenkins/workspace/step1/addressbook_main/target/addressbook.war
