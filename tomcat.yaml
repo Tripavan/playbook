@@ -53,5 +53,4 @@
       src: /root/jenkins/workspace/step1/addressbook_main/target/addressbook.war
       dest: /var/lib/tomcat9/webapps
     when:  ansible_facts['os_family'] == "Debian"
-    - name: Extract foo.tgz into /var/lib/foo
-  
+      
