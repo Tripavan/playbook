@@ -22,6 +22,12 @@
     copy:
       src: /root/tomcat.config
       dest: /etc/tomcat/tomcat-users.xml
+    when:  ansible_facts['os_family'] == "RedHat"
+  - name: configuration of tomcat
+    copy:
+      src: /root/tomcat.config
+      dest: /etc/tomcat9/tomcat-users.xml
+    when:  ansible_facts['os_family'] == "Debian"
   - name: starting up tomcat
     service:
       name: tomcat
