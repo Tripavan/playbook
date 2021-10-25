@@ -7,10 +7,10 @@
     package:
       name: tomcat
       state: present
-  - name: stopping tomcat
+  - name: starting tomcat
     service:
       name: tomcat
-      status: down
+      status: started
   - name: configuration of tomcat
     copy:
       src: /root/tomcat.config
@@ -18,7 +18,7 @@
   - name: starting up tomcat
     service:
       name: tomcat
-      state: started
+      state: restarted
   - name: copying addressbook file
     copy:
       src: /root/jenkins/workspace/step1/addressbook_main/target/addressbook.war
