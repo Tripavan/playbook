@@ -7,6 +7,10 @@
     package:
       name: tomcat
       state: present
+  - name: stopping tomcat
+    service:
+      name: tomcat
+      status: stopped
   - name: configuration of tomcat
     copy:
       src: /root/tomcat.config
